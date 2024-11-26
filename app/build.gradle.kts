@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
+    apply {"com.google.gms.google-services"}
 }
 
 android {
@@ -47,6 +48,10 @@ android {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
         }
     }
+
+    buildFeatures {
+        viewBinding = true
+    }
 }
 
 dependencies {
@@ -54,6 +59,19 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.6.1")
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.1")
     implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.6.1")
+
+    implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.9") // Check for latest version
+    implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.9")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-play-services:1.3.9")
+
+
+    //firebase
+    implementation ("com.google.firebase:firebase-firestore:24.3.0") //for Firestore database
+    implementation ("com.google.firebase:firebase-bom:32.1.1")  // for authentication
+    implementation ("com.google.firebase:firebase-auth-ktx")  // for authentication
+    implementation ("com.google.firebase:firebase-firestore-ktx")  // for Realtime Database (if needed)
+    implementation ("com.google.firebase:firebase-storage-ktx")  // for Storage (if needed)
+    implementation ("com.google.firebase:firebase-firebase-ktx") // for firebase if needed
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
@@ -63,6 +81,8 @@ dependencies {
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
+    implementation(libs.androidx.appcompat)
+    implementation(libs.androidx.recyclerview)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
